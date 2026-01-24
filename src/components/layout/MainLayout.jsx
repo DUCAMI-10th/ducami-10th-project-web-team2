@@ -8,7 +8,7 @@ const MainLayout = () => {
       <Header />
       
       {/* 헤더 높이(h-16 = 4rem = 64px)만큼 띄워줌 */}
-      <main className="flex-1 pt-16 p-6 bg-gray-50">
+      <main className="flex-1 pt-20 p-6 bg-[#F5F5F5]">
         <Outlet /> 
       </main>
       
