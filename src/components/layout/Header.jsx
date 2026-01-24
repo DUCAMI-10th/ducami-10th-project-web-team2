@@ -1,28 +1,68 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-const Header = () => {
 
+const Header = () => {
+  // 모바일 메뉴 열림/닫힘 상태 관리
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // 스타일 정의 (작성하신 그대로 유지)
   const getNavLink = ({ isActive }) => 
     isActive 
       ? "text-[#43B9A9] text-md font-medium transition-colors"
       : "text-[#030303] text-md font-medium hover:text-[#43B9A9] transition-colors";
 
   return (
-    <header className="w-full h-20 bg-[#F5F5F5] border-b border-gray-200 flex items-center justify-between px-6 fixed top-0 z-50">
-      <Link to="/">
-        <img 
-          src="/ducamiLogo.svg" 
-          alt="Ducami Logo" 
-          className="h-10 w-auto object-contain" 
-        />
-      </Link>
-      
-      <nav className="space-x-8">
-        <NavLink to="/" className={getNavLink}>동아리 소개</NavLink>
-        <NavLink to="/activity" className={getNavLink}>주요활동</NavLink>
-        <NavLink to="/noti" className={getNavLink}>공지사항</NavLink>
-        <NavLink to="/experience" className={getNavLink}>체험하기</NavLink>
-        <Link to="/" className="bg-[#43B9A9] text-white px-6.5 py-2.5 rounded-[5px]">로그인</Link>
-      </nav>
+    <header className="w-full h-20 bg-[#F5F5F5] border-b border-gray-200 fixed top-0 z-50">
+      <div className="h-full flex items-center justify-between px-6">
+
+        <Link to="/" onClick={() => setIsMenuOpen(false)}>
+          <img 
+            src="/ducamiLogo.svg" 
+            alt="Ducami Logo" 
+            className="h-10 w-auto object-contain" 
+          />
+        </Link>
+        
+        {/* 1. PC 버전 메뉴 */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <NavLink to="/" className={getNavLink}>동아리 소개</NavLink>
+          <NavLink to="/activity" className={getNavLink}>주요활동</NavLink>
+          <NavLink to="/noti" className={getNavLink}>공지사항</NavLink>
+          <NavLink to="/experience" className={getNavLink}>체험하기</NavLink>
+          <Link to="/" className="bg-[#43B9A9] text-white px-6.5 py-2 rounded-[5px]">로그인</Link>
+        </nav>
+
+        {/* 2. 모바일 햄버거 버튼 */}
+        <button 
+          className="md:hidden text-[#030303] p-2 focus:outline-none"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            // 닫기(X) 아이콘
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            // 햄버거 아이콘
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* 3. 모바일 메뉴 드롭다운 */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-20 left-0 w-full bg-[#F5F5F5] border-b border-gray-200 shadow-lg flex flex-col px-6 py-6 space-y-6">
+          <NavLink to="/" className={getNavLink} onClick={() => setIsMenuOpen(false)}>동아리 소개</NavLink>
+          <NavLink to="/activity" className={getNavLink} onClick={() => setIsMenuOpen(false)}>주요활동</NavLink>
+          <NavLink to="/noti" className={getNavLink} onClick={() => setIsMenuOpen(false)}>공지사항</NavLink>
+          <NavLink to="/experience" className={getNavLink} onClick={() => setIsMenuOpen(false)}>체험하기</NavLink>
+          <Link to="/" className="bg-[#43B9A9] text-white px-6.5 py-2 rounded-[5px] text-center w-fit" onClick={() => setIsMenuOpen(false)}>
+            로그인
+          </Link>
+        </div>
+      )}
     </header>
   );
 };

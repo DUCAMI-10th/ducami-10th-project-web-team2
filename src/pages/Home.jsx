@@ -2,11 +2,11 @@ import React from 'react';
 
 const Home = () => {
   return (
-    // 전체 콘텐츠를 감싸는 컨테이너 (중앙 정렬 및 최대 너비 제한)
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto px-6">
 
-      {/*상단 타이틀*/}
-      <section className="py-16 md:py-24">
+      {/* 상단 타이틀 */}
+      {/* text-left 명시하여 항상 왼쪽 정렬 유지 */}
+      <section className="py-16 md:py-24 text-left">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
           교육의 시작, <br className="md:hidden" /> {/* 모바일에서만 줄바꿈 */}
           <span className="text-[#43B9A9]">두카미</span>의 시작
@@ -17,8 +17,8 @@ const Home = () => {
         </p>
       </section>
 
-      {/*섹션 2: 좌측 텍스트 / 우측 이미지*/}
-      <section className="py-16 flex flex-col md:flex-row items-center justify-between gap-12">
+      {/* 섹션 2: 좌측 텍스트 / 우측 이미지 */}
+      <section className="py-16 flex flex-col md:flex-row items-start justify-between gap-12">
         {/* 텍스트 영역 */}
         <div className="md:w-1/2 space-y-6">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
@@ -31,6 +31,8 @@ const Home = () => {
             중학생들 대상으로 교육 봉사 활동을 하고 있습니다.
           </p>
         </div>
+        
+        {/* 이미지 영역 */}
         <div className="md:w-1/2 flex justify-center w-full">
           <img
             src="/job.jpg"
@@ -40,18 +42,18 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 섹션 3: 좌측 이미지 / 우측 텍스트  */}
-      <section className="py-16 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+      {/* 섹션 3: 좌측 이미지 / 우측 텍스트 */}
+      <section className="py-16 flex flex-col-reverse md:flex-row items-start justify-between gap-12">
         <div className="md:w-1/2 flex justify-center w-full">
           <img
             src="/creative.jpg"
-            alt="어린이날 창의융합 체험 활동 "
+            alt="어린이날 창의융합 체험 활동"
             className="w-full max-w-xl h-64 md:h-80 rounded-[30px] object-cover shadow-md border border-gray-100"
           />
         </div>
 
-        {/* 텍스트 영역 (PC에서는 우측 정렬) */}
-        <div className="md:w-1/2 space-y-6 md:text-right">
+        {/* 텍스트 영역 */}
+        <div className="md:w-1/2 space-y-6">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
             <span className="text-[#43B9A9]">두카미</span>는 단순히 지식을 전달하는 것을 넘어,<br />
             함께 성장하는 배움을 만들어 나갑니다.
