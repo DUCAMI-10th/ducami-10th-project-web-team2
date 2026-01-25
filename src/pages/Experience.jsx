@@ -11,7 +11,8 @@ const Experience = () => {
 print(a + b)`;
 
   const lineCount = targetCode.split('\n').length;
-  const dynamicHeight = Math.max(350, lineCount * 50 + 80);
+  // 폰트가 작아졌으므로 높이 계산식을 조금 줄였습니다.
+  const dynamicHeight = Math.max(250, lineCount * 40 + 60);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Tab') {
@@ -54,7 +55,6 @@ print(a + b)`;
 
   return (
     <div className="w-full min-h-screen bg-gray-50">
-      {/* 이미지의 Noti 헤더 스타일 적용 */}
       <div className="bg-[#43B9A9] w-full py-16 md:py-20">
         <div className="max-w-screen-xl mx-auto px-6 flex justify-between items-center">
           <div className="text-white space-y-2">
@@ -64,7 +64,6 @@ print(a + b)`;
               다양한 기능을 체험해보세요.
             </h1>
           </div>
-          {/* 모바일에서는 이미지를 숨기고(hidden) 데스크탑에서만 노출(md:block) */}
           <img 
             src='/Activity_icon.png' 
             className="hidden md:block w-48 h-48 lg:w-64 lg:h-64 object-contain" 
@@ -74,7 +73,6 @@ print(a + b)`;
       </div>
 
       <div className="max-w-screen-xl mx-auto px-6 py-12">
-        {/* 탭 메뉴 - 이미지의 버튼들처럼 깔끔한 반응형 처리 */}
         <div className="flex justify-center border-b border-gray-200 mb-10">
           <button
             onClick={() => setActiveTab(1)}
@@ -112,8 +110,9 @@ print(a + b)`;
               className="relative w-full bg-[#1e1e1e] rounded-2xl shadow-2xl overflow-hidden flex font-mono transition-all duration-500"
               style={{ height: `${dynamicHeight}px` }}
             >
-              <div className="relative flex-1 p-8 md:p-10 text-xl md:text-3xl leading-[1.8] tracking-tight">
-                <pre className="absolute inset-0 p-8 md:p-10 m-0 whitespace-pre-wrap break-all pointer-events-none" style={{ zIndex: 1 }}>
+              {/* 텍스트 크기를 text-base(모바일) ~ text-xl(데스크탑)로 조정 */}
+              <div className="relative flex-1 p-6 md:p-8 text-base md:text-xl leading-relaxed tracking-tight">
+                <pre className="absolute inset-0 p-6 md:p-8 m-0 whitespace-pre-wrap break-all pointer-events-none" style={{ zIndex: 1 }}>
                   {renderCode()}
                 </pre>
 
@@ -124,7 +123,7 @@ print(a + b)`;
                   onKeyDown={handleKeyDown}
                   spellCheck="false"
                   autoFocus
-                  className="absolute inset-0 w-full h-full p-8 md:p-10 bg-transparent text-transparent outline-none border-none resize-none caret-white whitespace-pre-wrap break-all"
+                  className="absolute inset-0 w-full h-full p-6 md:p-8 bg-transparent text-transparent outline-none border-none resize-none caret-white whitespace-pre-wrap break-all"
                   style={{ zIndex: 2, fontInherit: 'inherit' }}
                 />
               </div>
