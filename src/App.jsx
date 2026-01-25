@@ -4,6 +4,7 @@ import Home from '@/pages/Home';
 import MainActivity from '@/pages/MainActivity'
 import Noti from '@/pages/Noti'
 import Experience from '@/pages/Experience'
+import NotiWrite from '@/pages/NotiWrite';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/activity' element={<MainActivity />} />
         <Route path='/noti' element={<Noti />} />
         <Route path='/experience' element={<Experience />} />
+        <Route path='/noti/write' element={<NotiWrite />}/>
       </Route>
     </Routes>
   );
